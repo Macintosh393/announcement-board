@@ -3,41 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title><%= ann.title %></title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <a href="/">На головну</a>
-    <div>
-      <h1><%= ann.title %></h1>
-      <div>
-        <p>Ціна: <%= ann.price %> грн</p>
-        <p>Опубліковано: <%= ann.createdAt.toLocaleDateString("uk-UA") %></p>
+    <div class="container">
+      <div class="header">
+        <a href="/">← На головну</a>
       </div>
-      <p><%= ann.description %></p>
-      <p><%= ann.contactInfo %></p>
-      <button type="button" id="delete-btn">Видалити</button>
+      <div class="announcement-detail">
+        <div class="announcement-header">
+          <div class="announcement-title">
+            <h1><%= ann.title %></h1>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 24px;">
+                <% if (ann.category === 'sale') { %>📦<% } %>
+                <% if (ann.category === 'service') { %>🔧<% } %>
+                <% if (ann.category === 'job') { %>💼<% } %>
+                <% if (ann.category === 'other') { %>📌<% } %>
+              </span>
+              <span style="font-size: 14px; color: #666;">
+                <% if (ann.category === 'sale') { %>Продаж<% } %>
+                <% if (ann.category === 'service') { %>Послуги<% } %>
+                <% if (ann.category === 'job') { %>Робота<% } %>
+                <% if (ann.category === 'other') { %>Інше<% } %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="announcement-meta">
+          <p><strong>Ціна:</strong> <%= ann.price %> грн</p>
+          <p><strong>Опубліковано:</strong> <%= ann.createdAt.toLocaleDateString("uk-UA") %></p>
+        </div>
+        <div class="announcement-description">
+          <%= ann.description %>
+        </div>
+        <div class="announcement-contact">
+          <strong>Контакт:</strong>
+          <%= ann.contactInfo %>
+        </div>
+        <div class="announcement-actions">
+          <button type="button" id="delete-btn">🗑️ Видалити</button>
+        </div>
+      </div>
     </div>
+    <script>
+      const deleteBtn = document.querySelector("#delete-btn");
+      const announcementId = <%= ann.id %>;
+
+      deleteBtn.addEventListener("click", async () => {
+          if (!confirm("Ви впевнені що хочете видалити це оголошення?")) {
+              return;
+          }
+
+          try {
+              const response = await fetch(`/announcements/${announcementId}`, { method: "DELETE" });
+
+              if (response.ok) {
+                  window.location.href = "/";
+              } else {
+                  alert("Помилка при видаленні");
+              }
+          } catch (error) {
+              alert("Помилка при видаленні");
+          }
+      });
+    </script>
   </body>
-  <script>
-    const deleteBtn = document.querySelector("#delete-btn");
-    const announcementId = <%= ann.id %>;
-
-    deleteBtn.addEventListener("click", async () => {
-        if (!confirm("Ви впевнені що хочете видалити це оголошення?")) {
-            return;
-        }
-
-        try {
-            const response = await fetch(`/announcements/${announcementId}`, { method: "DELETE" });
-
-            if (response.ok) {
-                window.location.href = "/";
-            } else {
-                alert("Помилка при видаленні");
-            }
-        } catch (error) {
-            alert("Помилка при видаленні");
-        }
-    });
-  </script>
 </html>

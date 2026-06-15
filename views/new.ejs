@@ -3,54 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Нове оголошення</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <a href="/">На головну</a>
-    <form action="" method="post">
+    <div class="container">
+      <div class="header">
+        <a href="/">← На головну</a>
+        <h1 style="margin: 0; font-size: 24px;">Нове оголошення</h1>
+      </div>
+      <form action="" method="post" class="form-container">
       <fieldset>
         <legend>Категорія оголошення:</legend>
+        <div class="category-options">
+          <div class="category-option">
+            <input 
+            type="radio" 
+            name="category" 
+            value="sale" 
+            id="sale-category" 
+            <%= data?.category === "sale" ? "checked" : "" %> />
+            <label for="sale-category">📦 Продаж</label>
+          </div>
 
-        <div>
-          <input 
-          type="radio" 
-          name="category" 
-          value="sale" 
-          id="sale-category" 
-          <%= data?.category === "sale" ? "checked" : "" %> />
-          <label for="sale-category">📦 Продаж</label>
-        </div>
+          <div class="category-option">
+            <input
+              type="radio"
+              name="category"
+              value="service"
+              id="service-category"
+              <%= data?.category === "service" ? "checked" : "" %>
+            />
+            <label for="service-category">🔧 Послуги</label>
+          </div>
 
-        <div>
-          <input
-            type="radio"
-            name="category"
-            value="service"
-            id="service-category"
-            <%= data?.category === "service" ? "checked" : "" %>
-          />
-          <label for="service-category">🔧 Послуги</label>
-        </div>
+          <div class="category-option">
+            <input 
+            type="radio" 
+            name="category" 
+            value="job" 
+            id="job-category"
+            <%= data?.category === "job" ? "checked" : "" %> />
+            <label for="job-category">💼 Робота</label>
+          </div>
 
-        <div>
-          <input 
-          type="radio" 
-          name="category" 
-          value="job" 
-          id="job-category"
-          <%= data?.category === "job" ? "checked" : "" %> />
-          <label for="job-category">💼 Робота</label>
-        </div>
-
-        <div>
-          <input
-            type="radio"
-            name="category"
-            value="other"
-            id="other-category"
-            <%= data?.category === "other" ? "checked" : "" %>
-          />
-          <label for="other-category">📌 Інше</label>
+          <div class="category-option">
+            <input
+              type="radio"
+              name="category"
+              value="other"
+              id="other-category"
+              <%= data?.category === "other" ? "checked" : "" %>
+            />
+            <label for="other-category">📌 Інше</label>
+          </div>
         </div>
       </fieldset>
       <% if (errors.category) { %>
@@ -109,10 +115,11 @@
         <span class="error"><%= errors.contactInfo %></span>
       <% } %>
 
-      <div>
+      <div class="form-actions">
         <button type="submit">Опублікувати</button>
         <a href="/">Скасувати</a>
       </div>
-    </form>
+      </form>
+    </div>
   </body>
 </html>

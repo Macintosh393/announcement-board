@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Дошка оголошень</title>
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div>
-      <form action="" method="get">
+    <div class="container">
+      <div class="header">
+        <h1 style="margin: 0; font-size: 24px;">Дошка оголошень</h1>
+        <a href="/announcements">+ Додати оголошення</a>
+      </div>
+      <form action="" method="get" class="search-bar">
         <input
           type="search"
           name="search"
@@ -20,29 +25,34 @@
         </select>
         <button type="submit">Знайти</button>
       </form>
-      <a href="/announcements">Додати оголошення</a>
+      <ul class="announcements-list">
+        <% announcements.forEach(ann => { %>
+          <li class="card card-<%= ann.category %>">
+            <span class="card-emoji">
+              <% if (ann.category === 'sale') { %>📦<% } %>
+              <% if (ann.category === 'service') { %>🔧<% } %>
+              <% if (ann.category === 'job') { %>💼<% } %>
+              <% if (ann.category === 'other') { %>📌<% } %>
+            </span>
+            <h3><%= ann.title %></h3>
+            <p><%= ann.description.substring(0, 100) %><%= ann.description.length >= 100 ? "..." : "" %></p>
+            <p><strong><%= ann.price %> грн</strong></p>
+            <p><%= ann.contactInfo %></p>
+            <p>Опубліковано <%= ann.createdAt.toLocaleDateString("uk-UA") %></p>
+            <a href="/announcements/<%= ann.id %>">Детальніше →</a>
+          </li>
+        <% }) %>
+      </ul>
+      <% if (pagination.total > 10) { %>
+        <div class="pagination">
+          <% if (pagination.currentPage !== 1) { %>
+            <a href="/?page=<%= pagination.currentPage - 1 %>&search=<%= queryData?.search %>&sort=<%= queryData?.sort %>">← Попередня</a>
+          <% } %>
+          <% if (pagination.currentPage !== pagination.totalPages) { %>
+            <a href="/?page=<%= pagination.currentPage + 1 %>&search=<%= queryData?.search %>&sort=<%= queryData?.sort %>">Наступна →</a>
+          <% } %>
+        </div>
+      <% } %>
     </div>
-    <ul>
-      <% announcements.forEach(ann => { %>
-        <li class="card card-<%= ann.category %>">
-          <h3><%= ann.title %></h3>
-          <p><%= ann.description.substring(0, 100) %><%= ann.description.length >= 100 ? "..." : "" %></p>
-          <p><%= ann.price %> грн</p>
-          <p><%= ann.contactInfo %></p>
-          <p>Опубліковано <%= ann.createdAt.toLocaleDateString("uk-UA") %></p>
-          <a href="/announcements/<%= ann.id %>">Детальніше</a>
-        </li>
-      <% }) %>
-    </ul>
-    <% if (announcements.total > 10) { %>
-      <div>
-        <% if (pagination.currentPage !== 1) { %>
-          <a href="/?page=<%= pagination.currentPage - 1 %>&search=<%= queryData?.search %>&sort<%= queryData?.sort %>">Попередня</a>
-        <% } %>
-        <% if (pagination.currentPage !== pagination.totalPages) { %>
-          <a href="/?page=<%= pagination.currentPage + 1 %>&search=<%= queryData?.search %>&sort<%= queryData?.sort %>">Наступна</a>
-        <% } %>
-      </div>
-    <% } %>
   </body>
 </html>

@@ -1,0 +1,423 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #0052a3;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.header a {
+  font-weight: 600;
+  color: #0066cc;
+}
+
+/* Search & Filter Bar */
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.search-bar input,
+.search-bar select {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-bar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-bar select {
+  min-width: 180px;
+}
+
+.search-bar button {
+  padding: 10px 25px;
+}
+
+/* Announcements Grid */
+.announcements-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+/* Card Styles */
+.card {
+  position: relative;
+  border-left: 4px solid #999;
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-emoji {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 28px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  margin-right: 40px;
+  color: #222;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.card p:first-of-type {
+  flex-grow: 1;
+}
+
+.card a {
+  align-self: flex-start;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* Category Colors */
+.card-sale {
+  border-left-color: #10b981;
+}
+
+.card-service {
+  border-left-color: #f59e0b;
+}
+
+.card-job {
+  border-left-color: #8b5cf6;
+}
+
+.card-other {
+  border-left-color: #ef4444;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #f0f0f0;
+}
+
+.pagination a {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #0066cc;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.pagination a:hover {
+  background-color: #e0e0e0;
+  text-decoration: none;
+}
+
+/* Form Styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  background-color: #fafafa;
+}
+
+legend {
+  padding: 0 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.category-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.category-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-option input[type="radio"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.category-option label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-actions button {
+  flex: 1;
+}
+
+.form-actions a {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 4px;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.form-actions a:hover {
+  background-color: #e0e0e0;
+  text-decoration: none;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+/* Announcement Detail Page */
+.announcement-detail {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.announcement-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.announcement-title {
+  flex: 1;
+}
+
+.announcement-title h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.announcement-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.announcement-meta p {
+  margin: 0;
+}
+
+.announcement-description {
+  margin-bottom: 20px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.announcement-contact {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.announcement-contact strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.announcement-actions {
+  display: flex;
+  gap: 10px;
+}
+
+#delete-btn {
+  background-color: #ef4444;
+}
+
+#delete-btn:hover {
+  background-color: #dc2626;
+}
+
+/* Error Pages */
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.error-container h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #ef4444;
+}
+
+.error-container strong {
+  display: block;
+  font-size: 72px;
+  color: #ef4444;
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .announcements-list {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
+  .search-bar {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-bar input,
+  .search-bar select,
+  .search-bar button {
+    width: 100%;
+  }
+
+  .pagination {
+    flex-direction: column;
+  }
+
+  .pagination a {
+    width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .announcement-meta {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
