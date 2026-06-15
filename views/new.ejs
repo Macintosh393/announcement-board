@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="/">На головну</a>
+    <form action="" method="post">
+      <fieldset>
+        <legend>Категорія оголошення:</legend>
+
+        <div>
+          <input 
+          type="radio" 
+          name="category" 
+          value="sale" 
+          id="sale-category" 
+          <%= data?.category === "sale" ? "checked" : "" %> />
+          <label for="sale-category">📦 Продаж</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            name="category"
+            value="service"
+            id="service-category"
+            <%= data?.category === "service" ? "checked" : "" %>
+          />
+          <label for="service-category">🔧 Послуги</label>
+        </div>
+
+        <div>
+          <input 
+          type="radio" 
+          name="category" 
+          value="job" 
+          id="job-category"
+          <%= data?.category === "job" ? "checked" : "" %> />
+          <label for="job-category">💼 Робота</label>
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            name="category"
+            value="other"
+            id="other-category"
+            <%= data?.category === "other" ? "checked" : "" %>
+          />
+          <label for="other-category">📌 Інше</label>
+        </div>
+      </fieldset>
+      <% if (errors.category) { %>
+        <span class="error"><%= errors.category %></span>
+      <% } %>
+
+      <input
+        type="text"
+        name="title"
+        minlength="5"
+        maxlength="100"
+        placeholder="Коротка назва оголошення"
+        value="<%= data?.title || '' %>"
+        required
+      />
+      <% if (errors.title) { %>
+        <span class="error"><%= errors.title %></span>
+      <% } %>
+      
+      <textarea
+        name="description"
+        rows="6"
+        id=""
+        minlength=""
+        placeholder="Детальний опис оголошення..."
+        required
+      ><%= data?.description || '' %></textarea>
+      <% if (errors.description) { %>
+        <span class="error"><%= errors.description %></span>
+      <% } %>
+
+      <input
+        type="number"
+        name="price"
+        min="0"
+        step="0.01"
+        id=""
+        placeholder="Ціна"
+        value="<%= data?.price || '' %>"
+        required
+      />
+      <% if (errors.price) { %>
+        <span class="error"><%= errors.price %></span>
+      <% } %>
+
+      <input
+        type="text"
+        name="contactInfo"
+        id=""
+        minlength="5"
+        placeholder="Email або телефон"
+        value="<%= data?.contactInfo || '' %>"
+        required
+      />
+      <% if (errors.contactInfo) { %>
+        <span class="error"><%= errors.contactInfo %></span>
+      <% } %>
+
+      <div>
+        <button type="submit">Опублікувати</button>
+        <a href="/">Скасувати</a>
+      </div>
+    </form>
+  </body>
+</html>
